@@ -77,6 +77,7 @@ const SERVICES = [
     desc: "Новые китайские авто напрямую. Таможня и регистрация — включены.",
     badge: "Хит",
     badgeColor: "bg-orange text-white",
+    link: "https://autozix.ru/link/TElOS19fNGJlNTgwNDJUVwM=",
   },
   {
     id: "korea",
@@ -87,6 +88,7 @@ const SERVICES = [
     desc: "Надёжные корейские авто с гарантией и официальными документами.",
     badge: null,
     badgeColor: "",
+    link: "https://autozix.ru/link/TElOS19fNGJlNTgwNDJUVwM=",
   },
 ];
 
@@ -320,9 +322,17 @@ export default function Index() {
                       <div className="text-xs text-ink-light">Стоимость</div>
                       <div className="font-display text-lg font-bold text-orange">{s.price}</div>
                     </div>
-                    <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
-                      Подробнее <Icon name="ArrowRight" size={13} />
-                    </button>
+                    {"link" in s && s.link ? (
+                      <a href={s.link} target="_blank" rel="noopener noreferrer">
+                        <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
+                          Заказать <Icon name="ArrowRight" size={13} />
+                        </button>
+                      </a>
+                    ) : (
+                      <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
+                        Подробнее <Icon name="ArrowRight" size={13} />
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
