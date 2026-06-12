@@ -22,7 +22,7 @@ export default function BottomSections() {
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { from: "manager", text: "Принял! Менеджер ответит в течение нескольких минут. Или позвоните: 8-800-000-00-00" },
+        { from: "manager", text: "Принял! Менеджер ответит в течение нескольких минут. Или позвоните: +7 923-771-6465" },
       ]);
     }, 700);
   };
@@ -164,7 +164,7 @@ export default function BottomSections() {
               </button>
             </a>
             <button className="border-2 border-white text-white font-semibold px-10 py-4 rounded-xl text-base hover:bg-white/10 transition-colors">
-              Позвонить: 8-800-000-00-00
+              Позвонить: +7 923-771-6465
             </button>
           </div>
         </div>
