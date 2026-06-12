@@ -422,31 +422,34 @@ export default function Index() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <div className="bg-surface-3 rounded-2xl p-6 border border-surface-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-semibold text-ink">Виджет на ваш сайт</span>
-                  <Icon name="Code2" size={16} className="text-ink-light" />
+              {/* ОСАГО для партнёров */}
+              <div className="bg-orange rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Icon name="Shield" size={20} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-white/70 text-xs uppercase tracking-wide font-medium">Страхование</div>
+                    <div className="text-white font-display text-lg font-bold">ОСАГО для партнёров</div>
+                  </div>
                 </div>
-                <div className="bg-ink rounded-xl p-4 font-mono text-xs leading-relaxed">
-                  <span className="text-blue-300">&lt;iframe</span><br />
-                  <span className="ml-4 text-gray-400">src="https://autopartner.ru/widget"</span><br />
-                  <span className="ml-4 text-gray-400">ref="<span className="text-orange-light">ВАШ_КОД</span>"</span><br />
-                  <span className="text-blue-300">&gt;&lt;/iframe&gt;</span>
+                <p className="text-white/85 text-sm leading-relaxed mb-4">
+                  Оформление полиса ОСАГО через все страховые компании с AI-распознаванием документов.
+                </p>
+                <div className="bg-white/15 rounded-xl px-4 py-3 flex items-center justify-between">
+                  <span className="text-white/80 text-sm">Комиссия с каждого полиса</span>
+                  <span className="text-white font-display text-xl font-bold">до 20%</span>
                 </div>
-                <button className="btn-secondary w-full py-2.5 rounded-xl text-sm mt-4 flex items-center justify-center gap-2">
-                  <Icon name="Copy" size={13} />
-                  Скопировать виджет
-                </button>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { val: "Под ключ", label: "Условия" },
+                  { val: "до 20%", label: "Комиссия" },
                   { val: "500+", label: "Партнёров" },
                   { val: "24/7", label: "Поддержка" },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-orange-pale rounded-2xl p-4 text-center">
-                    <div className="font-display text-2xl font-bold text-orange">{stat.val}</div>
+                    <div className="font-display text-xl font-bold text-orange">{stat.val}</div>
                     <div className="text-xs text-ink-light mt-1">{stat.label}</div>
                   </div>
                 ))}
