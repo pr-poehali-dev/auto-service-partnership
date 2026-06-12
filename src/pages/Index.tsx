@@ -35,6 +35,7 @@ const SERVICES = [
     badgeColor: "bg-orange text-white",
     widgetId: "108",
     widgetTarget: "osago",
+    link: "https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=",
   },
   {
     id: "kasko",
@@ -47,6 +48,7 @@ const SERVICES = [
     badgeColor: "",
     widgetId: "109",
     widgetTarget: "kasko",
+    link: "https://autozix.ru/link/TElOS19fMzc2YzcwMWIIB1Y=",
   },
   {
     id: "history",
@@ -59,6 +61,7 @@ const SERVICES = [
     badgeColor: "bg-green-500 text-white",
     widgetId: "110",
     widgetTarget: "history",
+    link: "https://autozix.ru/link/TElOS19fYjMwMWQyYWNVV1A=",
   },
   {
     id: "sale",
