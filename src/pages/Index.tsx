@@ -153,7 +153,7 @@ export default function Index() {
               <Icon name="Car" size={16} className="text-white" />
             </div>
             <span className="font-display text-xl font-bold tracking-wide text-ink">
-              АВТО<span className="text-orange">ПАРТНЁР</span>
+              МагСибЗап<span className="text-orange"> Авто</span>
             </span>
           </a>
 
@@ -526,7 +526,7 @@ export default function Index() {
               <Icon name="Car" size={14} className="text-white" />
             </div>
             <span className="font-display text-lg font-bold text-white tracking-wide">
-              АВТО<span className="text-orange">ПАРТНЁР</span>
+              МагСибЗап<span className="text-orange"> Авто</span>
             </span>
           </div>
           <div className="flex flex-wrap gap-6 justify-center">
@@ -535,7 +535,7 @@ export default function Index() {
                 className="text-white/40 text-sm hover:text-white transition-colors">{link.label}</a>
             ))}
           </div>
-          <p className="text-white/25 text-xs">© 2024 АвтоПартнёр</p>
+          <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
         </div>
       </footer>
 
