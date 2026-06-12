@@ -81,22 +81,7 @@ const PROMOS = [
     color: "bg-orange",
     light: false,
   },
-  {
-    icon: "Gift",
-    title: "Проверка авто в подарок",
-    desc: "При покупке КАСКО — отчёт об истории машины бесплатно",
-    tag: "Акция",
-    color: "bg-surface-3",
-    light: true,
-  },
-  {
-    icon: "Zap",
-    title: "Приведи друга — получи 500 ₽",
-    desc: "Пригласите знакомого и получите бонус на счёт",
-    tag: "Постоянно",
-    color: "bg-surface-3",
-    light: true,
-  },
+
 ];
 
 const REVIEWS = [
