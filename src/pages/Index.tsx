@@ -320,8 +320,21 @@ export default function Index() {
                 </div>
                 <p className="text-ink-light text-sm leading-relaxed">{s.desc}</p>
                 {"widgetId" in s && s.widgetId ? (
-                  <div className="mt-2">
+                  <div className="flex flex-col gap-3 mt-2">
                     <AutozixWidget widgetId={s.widgetId} widgetTarget={s.widgetTarget ?? ""} refUrl={"link" in s ? s.link : undefined} />
+                    {"link" in s && s.link && (
+                      <div className="flex items-center justify-between pt-3 border-t border-surface-4">
+                        <div>
+                          <div className="text-xs text-ink-light">Стоимость</div>
+                          <div className="font-display text-lg font-bold text-orange">{s.price}</div>
+                        </div>
+                        <a href={s.link} target="_blank" rel="noopener noreferrer">
+                          <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
+                            Оформить <Icon name="ArrowRight" size={13} />
+                          </button>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="mt-auto flex items-center justify-between pt-3 border-t border-surface-4">
