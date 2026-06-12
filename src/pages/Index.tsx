@@ -174,8 +174,12 @@ export default function Index() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button className="btn-secondary text-sm px-5 py-2 rounded-lg">Войти</button>
-            <button className="btn-primary text-sm px-5 py-2.5 rounded-lg">Оформить ОСАГО</button>
+            <a href="https://autozix.ru/ref/U2FsdGVkX18wNmYxNzI3MQIMAQ%3D%3D" target="_blank" rel="noopener noreferrer">
+              <button className="btn-secondary text-sm px-5 py-2 rounded-lg">Войти</button>
+            </a>
+            <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer">
+              <button className="btn-primary text-sm px-5 py-2.5 rounded-lg">Оформить ОСАГО</button>
+            </a>
           </div>
 
           <button className="md:hidden text-ink-mid" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -189,7 +193,9 @@ export default function Index() {
                 className="text-sm font-medium text-ink-mid hover:text-orange transition-colors"
                 onClick={() => setMobileMenuOpen(false)}>{link.label}</a>
             ))}
-            <button className="btn-primary text-sm px-5 py-3 rounded-lg w-full mt-1">Оформить ОСАГО</button>
+            <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer" className="w-full">
+              <button className="btn-primary text-sm px-5 py-3 rounded-lg w-full mt-1">Оформить ОСАГО</button>
+            </a>
           </div>
         )}
       </nav>
