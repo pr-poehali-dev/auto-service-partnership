@@ -1,10 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
+
+function OsagoWidget() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    const script = document.createElement("script");
+    script.src = "https://autozix.ru/widget/index.js";
+    script.className = "autozixWidget";
+    script.setAttribute("widgetId", "108");
+    script.setAttribute("target", "osago");
+    ref.current.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
+  return <div ref={ref} />;
+}
 
 const NAV_LINKS = [
   { label: "Главная", href: "#home" },
   { label: "Услуги", href: "#services" },
-  { label: "Акции", href: "#promo" },
   { label: "Партнёрам", href: "#referral" },
   { label: "О нас", href: "#about" },
 ];
@@ -72,18 +86,6 @@ const SERVICES = [
   },
 ];
 
-const PROMOS = [
-  {
-    icon: "Percent",
-    title: "−15% на ОСАГО",
-    desc: "При оформлении онлайн до 31 июля",
-    tag: "До 31 июля",
-    color: "bg-orange",
-    light: false,
-  },
-
-];
-
 const REVIEWS = [
   { name: "Максим К.", city: "Москва", text: "Оформил ОСАГО за 7 минут. Всё честно, без скрытых платежей. Рекомендую!", stars: 5 },
   { name: "Светлана Р.", city: "СПб", text: "Заказала авто из Кореи — всё под ключ. Помогли с таможней, привезли быстро.", stars: 5 },
@@ -91,9 +93,6 @@ const REVIEWS = [
 ];
 
 const FILTER_TAGS = ["Все", "Страхование", "История ТС", "Маркетплейс", "Импорт"];
-
-const CAR_BRANDS = ["Toyota", "Kia", "Hyundai", "Chery", "Haval", "BYD", "BMW", "Mercedes"];
-const REGIONS = ["Москва", "Санкт-Петербург", "Казань", "Новосибирск", "Екатеринбург", "Краснодар"];
 
 export default function Index() {
   const [activeFilter, setActiveFilter] = useState("Все");
@@ -105,27 +104,7 @@ export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Calculator state
-  const [calcBrand, setCalcBrand] = useState("");
-  const [calcRegion, setCalcRegion] = useState("");
-  const [calcYear, setCalcYear] = useState("");
-  const [calcPrice, setCalcPrice] = useState<number | null>(null);
-  const [calcLoading, setCalcLoading] = useState(false);
-
   const filtered = activeFilter === "Все" ? SERVICES : SERVICES.filter((s) => s.tag === activeFilter);
-
-  const calculateOsago = () => {
-    if (!calcBrand || !calcRegion || !calcYear) return;
-    setCalcLoading(true);
-    setCalcPrice(null);
-    setTimeout(() => {
-      const base = 4500;
-      const yearFactor = calcYear ? Math.max(0.7, 1 - (2024 - parseInt(calcYear)) * 0.03) : 1;
-      const regionFactor = ["Москва", "Санкт-Петербург"].includes(calcRegion) ? 1.8 : 1.2;
-      setCalcPrice(Math.round(base * yearFactor * regionFactor / 100) * 100);
-      setCalcLoading(false);
-    }, 900);
-  };
 
   const sendMessage = () => {
     if (!chatInput.trim()) return;
@@ -254,69 +233,16 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Right — inline calc */}
+            {/* Right — ОСАГО виджет */}
             <div id="calc" className="animate-fade-in-up delay-300">
-              <div className="bg-white rounded-2xl border-2 border-orange/15 shadow-xl p-7">
-                <div className="flex items-center gap-2 mb-1">
+              <div className="bg-white rounded-2xl border-2 border-orange/15 shadow-xl p-4 overflow-hidden">
+                <div className="flex items-center gap-2 mb-4">
                   <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center">
-                    <Icon name="Calculator" size={16} className="text-orange" />
+                    <Icon name="Shield" size={16} className="text-orange" />
                   </div>
-                  <span className="font-display text-xl font-semibold text-ink">Расчёт ОСАГО</span>
+                  <span className="font-display text-xl font-semibold text-ink">Оформить ОСАГО</span>
                 </div>
-                <p className="text-ink-light text-sm mb-5">Узнайте стоимость за 30 секунд</p>
-
-                <div className="flex flex-col gap-3 mb-4">
-                  <select
-                    value={calcBrand}
-                    onChange={(e) => setCalcBrand(e.target.value)}
-                    className="input-clean"
-                  >
-                    <option value="">Марка автомобиля</option>
-                    {CAR_BRANDS.map((b) => <option key={b} value={b}>{b}</option>)}
-                  </select>
-                  <select
-                    value={calcRegion}
-                    onChange={(e) => setCalcRegion(e.target.value)}
-                    className="input-clean"
-                  >
-                    <option value="">Ваш регион</option>
-                    {REGIONS.map((r) => <option key={r} value={r}>{r}</option>)}
-                  </select>
-                  <input
-                    type="number"
-                    value={calcYear}
-                    onChange={(e) => setCalcYear(e.target.value)}
-                    placeholder="Год выпуска (напр. 2019)"
-                    className="input-clean"
-                    min={1990}
-                    max={2024}
-                  />
-                </div>
-
-                {calcPrice !== null && (
-                  <div className="bg-orange-pale rounded-xl p-4 mb-4 flex items-center justify-between animate-fade-in">
-                    <div>
-                      <div className="text-ink-light text-xs mb-0.5">Примерная стоимость</div>
-                      <div className="font-display text-3xl font-bold text-orange">{calcPrice.toLocaleString("ru")} ₽</div>
-                    </div>
-                    <Icon name="TrendingDown" size={28} className="text-orange/40" />
-                  </div>
-                )}
-
-                <button
-                  onClick={calculateOsago}
-                  disabled={calcLoading || !calcBrand || !calcRegion || !calcYear}
-                  className="btn-primary w-full py-3.5 rounded-xl text-base font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {calcLoading ? (
-                    <><Icon name="Loader" size={16} className="animate-spin" /> Считаю…</>
-                  ) : (
-                    <><Icon name="Zap" size={16} /> Рассчитать</>
-                  )}
-                </button>
-                <p className="text-center text-xs text-ink-light mt-3">
-                  Окончательная цена — при оформлении. Без доп. комиссий.
-                </p>
+                <OsagoWidget />
               </div>
             </div>
           </div>
@@ -332,40 +258,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* PROMOS */}
-      <section id="promo" className="py-16 bg-surface-3">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <span className="section-label mb-3 inline-flex">
-                <Icon name="Tag" size={13} />
-                Акции и скидки
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mt-3">Выгодные предложения</h2>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {PROMOS.map((p) => (
-              <div
-                key={p.title}
-                className={`card-lift rounded-2xl p-6 flex flex-col gap-3 ${p.color} ${p.light ? "border border-surface-4" : ""}`}
-              >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${p.light ? "bg-orange-pale" : "bg-white/20"}`}>
-                  <Icon name={p.icon} size={20} className={p.light ? "text-orange" : "text-white"} />
-                </div>
-                <div className={`text-xs font-semibold uppercase tracking-wide ${p.light ? "text-orange" : "text-white/70"}`}>
-                  {p.tag}
-                </div>
-                <h3 className={`font-display text-xl font-bold ${p.light ? "text-ink" : "text-white"}`}>{p.title}</h3>
-                <p className={`text-sm leading-relaxed ${p.light ? "text-ink-light" : "text-white/80"}`}>{p.desc}</p>
-                <button className={`mt-auto text-sm font-semibold flex items-center gap-1.5 ${p.light ? "text-orange" : "text-white"}`}>
-                  Подробнее <Icon name="ArrowRight" size={13} />
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* SERVICES */}
       <section id="services" className="py-20 bg-white">
