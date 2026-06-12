@@ -64,9 +64,10 @@ const SERVICES = [
     label: "Продажа авто",
     tag: "Маркетплейс",
     price: "Бесплатно",
-    desc: "Разместите объявление — покупатели сами вас найдут.",
-    badge: null,
-    badgeColor: "",
+    desc: "Разместите объявление на нашей площадке — быстро, удобно, без скрытых платежей.",
+    badge: "Бесплатно",
+    badgeColor: "bg-green-500 text-white",
+    link: "https://autozix.ru/link/TElOS19fYWRlMTYwOGICAAs=",
   },
   {
     id: "china",
