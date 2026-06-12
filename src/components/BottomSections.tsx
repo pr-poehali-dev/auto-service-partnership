@@ -163,9 +163,11 @@ export default function BottomSections() {
                 Рассчитать стоимость
               </button>
             </a>
-            <button className="border-2 border-white text-white font-semibold px-10 py-4 rounded-xl text-base hover:bg-white/10 transition-colors">
-              Позвонить: +7 923-771-6465
-            </button>
+            <a href="tel:+79237716465">
+              <button className="border-2 border-white text-white font-semibold px-10 py-4 rounded-xl text-base hover:bg-white/10 transition-colors">
+                Позвонить: +7 923-771-6465
+              </button>
+            </a>
           </div>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function HeroSection() {
               {[
                 { icon: "CheckCircle2", text: "Без скрытых платежей" },
                 { icon: "Clock", text: "Полис за 5 минут" },
-                { icon: "Phone", text: "8-800 бесплатно" },
+                { icon: "Phone", text: "+7 923-771-6465" },
               ].map((b) => (
                 <div key={b.text} className="flex items-center gap-2 text-ink-mid text-sm">
                   <Icon name={b.icon} size={16} className="text-orange" />
