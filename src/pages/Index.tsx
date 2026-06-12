@@ -33,6 +33,8 @@ const SERVICES = [
     desc: "Оформим полис за 5 минут. Без очередей, без переплат — всё онлайн.",
     badge: "Популярно",
     badgeColor: "bg-orange text-white",
+    widgetId: "108",
+    widgetTarget: "osago",
   },
   {
     id: "kasko",
