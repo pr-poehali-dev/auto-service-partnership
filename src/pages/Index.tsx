@@ -1,19 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-function AutozixWidget({ widgetId, widgetTarget }: { widgetId: string; widgetTarget: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+function AutozixWidget({ widgetId, widgetTarget, refUrl }: { widgetId: string; widgetTarget: string; refUrl?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!ref.current) return;
+    if (!containerRef.current) return;
     const script = document.createElement("script");
     script.src = "https://autozix.ru/widget/index.js";
     script.className = "autozixWidget";
     script.setAttribute("widgetId", widgetId);
     script.setAttribute("target", widgetTarget);
-    ref.current.appendChild(script);
+    if (refUrl) script.setAttribute("ref", refUrl);
+    containerRef.current.appendChild(script);
     return () => { script.remove(); };
-  }, [widgetId, widgetTarget]);
-  return <div ref={ref} />;
+  }, [widgetId, widgetTarget, refUrl]);
+  return <div ref={containerRef} />;
 }
 
 const NAV_LINKS = [
@@ -254,7 +255,7 @@ export default function Index() {
                   </div>
                   <span className="font-display text-xl font-semibold text-ink">Оформить ОСАГО</span>
                 </div>
-                <AutozixWidget widgetId="108" widgetTarget="osago" />
+                <AutozixWidget widgetId="108" widgetTarget="osago" refUrl="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" />
               </div>
             </div>
           </div>
@@ -320,7 +321,7 @@ export default function Index() {
                 <p className="text-ink-light text-sm leading-relaxed">{s.desc}</p>
                 {"widgetId" in s && s.widgetId ? (
                   <div className="mt-2">
-                    <AutozixWidget widgetId={s.widgetId} widgetTarget={s.widgetTarget ?? ""} />
+                    <AutozixWidget widgetId={s.widgetId} widgetTarget={s.widgetTarget ?? ""} refUrl={"link" in s ? s.link : undefined} />
                   </div>
                 ) : (
                   <div className="mt-auto flex items-center justify-between pt-3 border-t border-surface-4">
