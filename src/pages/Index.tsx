@@ -75,7 +75,7 @@ const SERVICES = [
     label: "Авто из Китая",
     tag: "Импорт",
     price: "от 1 200 000 ₽",
-    desc: "Новые китайские авто напрямую. Таможня и регистрация — включены.",
+    desc: "Цена «под ключ»: авто + доставка + таможня + СБКТС и ЭПТС до г. Уссурийск. Доставка до Москвы +200 000 ₽.",
     badge: "Хит",
     badgeColor: "bg-orange text-white",
     link: "https://autozix.ru/link/TElOS19fNGJlNTgwNDJUVwM=",
@@ -86,7 +86,7 @@ const SERVICES = [
     label: "Авто из Кореи",
     tag: "Импорт",
     price: "от 900 000 ₽",
-    desc: "Надёжные корейские авто с гарантией и официальными документами.",
+    desc: "Цена «под ключ»: авто + доставка + таможня + СБКТС и ЭПТС до г. Уссурийск. Доставка до Москвы +200 000 ₽.",
     badge: null,
     badgeColor: "",
     link: "https://autozix.ru/link/TElOS19fNGJlNTgwNDJUVwM=",
@@ -389,8 +389,8 @@ export default function Index() {
                 Зарабатывайте вместе с нами
               </h2>
               <p className="text-ink-light text-base leading-relaxed mb-8">
-                Если вы владелец автосервиса, мойки или салона — разместите наш виджет на сайте 
-                и получайте до 15% с каждой продажи.
+                Если вы владелец автосервиса, мойки или салона — разместите нашу ссылку или виджет 
+                и получайте вознаграждение с каждой успешной сделки.
               </p>
               <div className="flex flex-col gap-4 mb-8">
                 {[
@@ -432,9 +432,9 @@ export default function Index() {
 
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { val: "до 15%", label: "Комиссия" },
+                  { val: "Под ключ", label: "Условия" },
                   { val: "500+", label: "Партнёров" },
-                  { val: "Еженед.", label: "Выплаты" },
+                  { val: "24/7", label: "Поддержка" },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-orange-pale rounded-2xl p-4 text-center">
                     <div className="font-display text-2xl font-bold text-orange">{stat.val}</div>
