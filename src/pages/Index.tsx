@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-function OsagoWidget() {
+function AutozixWidget({ widgetId, widgetTarget }: { widgetId: string; widgetTarget: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) return;
     const script = document.createElement("script");
     script.src = "https://autozix.ru/widget/index.js";
     script.className = "autozixWidget";
-    script.setAttribute("widgetId", "108");
-    script.setAttribute("target", "osago");
+    script.setAttribute("widgetId", widgetId);
+    script.setAttribute("target", widgetTarget);
     ref.current.appendChild(script);
     return () => { script.remove(); };
-  }, []);
+  }, [widgetId, widgetTarget]);
   return <div ref={ref} />;
 }
 
@@ -43,6 +43,8 @@ const SERVICES = [
     desc: "Полная защита вашей машины. Сравниваем предложения от 12 страховых.",
     badge: null,
     badgeColor: "",
+    widgetId: "109",
+    widgetTarget: "kasko",
   },
   {
     id: "history",
@@ -242,7 +244,7 @@ export default function Index() {
                   </div>
                   <span className="font-display text-xl font-semibold text-ink">Оформить ОСАГО</span>
                 </div>
-                <OsagoWidget />
+                <AutozixWidget widgetId="108" widgetTarget="osago" />
               </div>
             </div>
           </div>
@@ -290,7 +292,7 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((s) => (
-              <div key={s.id} className="card-lift bg-white border border-surface-4 rounded-2xl p-6 flex flex-col gap-4 relative">
+              <div key={s.id} className={`card-lift bg-white border border-surface-4 rounded-2xl p-6 flex flex-col gap-4 relative ${"widgetId" in s && s.widgetId ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 {s.badge && (
                   <span className={`absolute top-5 right-5 text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full ${s.badgeColor}`}>
                     {s.badge}
@@ -306,15 +308,21 @@ export default function Index() {
                   </div>
                 </div>
                 <p className="text-ink-light text-sm leading-relaxed">{s.desc}</p>
-                <div className="mt-auto flex items-center justify-between pt-3 border-t border-surface-4">
-                  <div>
-                    <div className="text-xs text-ink-light">Стоимость</div>
-                    <div className="font-display text-lg font-bold text-orange">{s.price}</div>
+                {"widgetId" in s && s.widgetId ? (
+                  <div className="mt-2">
+                    <AutozixWidget widgetId={s.widgetId} widgetTarget={s.widgetTarget ?? ""} />
                   </div>
-                  <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
-                    Подробнее <Icon name="ArrowRight" size={13} />
-                  </button>
-                </div>
+                ) : (
+                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-surface-4">
+                    <div>
+                      <div className="text-xs text-ink-light">Стоимость</div>
+                      <div className="font-display text-lg font-bold text-orange">{s.price}</div>
+                    </div>
+                    <button className="btn-primary px-5 py-2 rounded-xl text-sm flex items-center gap-1.5">
+                      Подробнее <Icon name="ArrowRight" size={13} />
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
