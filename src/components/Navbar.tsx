@@ -1,0 +1,65 @@
+import { useState } from "react";
+import Icon from "@/components/ui/icon";
+
+const NAV_LINKS = [
+  { label: "Главная", href: "#home" },
+  { label: "Услуги", href: "#services" },
+  { label: "Партнёрам", href: "#referral" },
+  { label: "О нас", href: "#about" },
+];
+
+export default function Navbar({ activeSection }: { activeSection: string }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-surface-4 shadow-sm">
+      <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
+        <a href="#home" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 bg-orange rounded-lg flex items-center justify-center">
+            <Icon name="Car" size={16} className="text-white" />
+          </div>
+          <span className="font-display text-xl font-bold tracking-wide text-ink">
+            МагСибЗап<span className="text-orange"> Авто</span>
+          </span>
+        </a>
+
+        <div className="hidden md:flex items-center gap-7">
+          {NAV_LINKS.map((link) => {
+            const id = link.href.replace("#", "");
+            return (
+              <a key={link.href} href={link.href}
+                className={`text-sm font-medium transition-colors ${activeSection === id ? "text-orange" : "text-ink-mid hover:text-orange"}`}>
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a href="https://autozix.ru/ref/U2FsdGVkX18wNmYxNzI3MQIMAQ%3D%3D" target="_blank" rel="noopener noreferrer">
+            <button className="btn-secondary text-sm px-5 py-2 rounded-lg">Войти</button>
+          </a>
+          <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer">
+            <button className="btn-primary text-sm px-5 py-2.5 rounded-lg">Оформить ОСАГО</button>
+          </a>
+        </div>
+
+        <button className="md:hidden text-ink-mid" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <Icon name={mobileMenuOpen ? "X" : "Menu"} size={22} />
+        </button>
+      </div>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-surface-4 px-5 py-4 flex flex-col gap-4 animate-fade-in">
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href}
+              className="text-sm font-medium text-ink-mid hover:text-orange transition-colors"
+              onClick={() => setMobileMenuOpen(false)}>{link.label}</a>
+          ))}
+          <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer" className="w-full">
+            <button className="btn-primary text-sm px-5 py-3 rounded-lg w-full mt-1">Оформить ОСАГО</button>
+          </a>
+        </div>
+      )}
+    </nav>
+  );
+}
