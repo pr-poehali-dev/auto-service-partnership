@@ -49,12 +49,14 @@ const SERVICES = [
   {
     id: "history",
     icon: "FileSearch",
-    label: "Проверка авто",
+    label: "История автомобиля",
     tag: "История ТС",
     price: "от 299 ₽",
-    desc: "ДТП, пробег, ограничения — полный отчёт за 2 минуты.",
-    badge: "Быстро",
+    desc: "29 параметров проверки: ДТП, пробег, владельцы, ограничения, залог и многое другое.",
+    badge: "29 параметров",
     badgeColor: "bg-green-500 text-white",
+    widgetId: "110",
+    widgetTarget: "history",
   },
   {
     id: "sale",
