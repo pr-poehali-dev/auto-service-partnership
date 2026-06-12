@@ -388,10 +388,16 @@ export default function Index() {
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mt-3 mb-4">
                 Зарабатывайте вместе с нами
               </h2>
-              <p className="text-ink-light text-base leading-relaxed mb-8">
-                Если вы владелец автосервиса, мойки или салона — разместите нашу ссылку или виджет 
-                и получайте вознаграждение с каждой успешной сделки.
+              <p className="text-ink-light text-base leading-relaxed mb-4">
+                Разместите нашу ссылку или виджет и получайте вознаграждение с каждой успешной сделки.
               </p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Автомойки", "Автосалоны", "Магазины запчастей", "Автосервисы"].map((t) => (
+                  <span key={t} className="bg-orange-pale text-orange text-sm font-medium px-3 py-1.5 rounded-full">
+                    {t}
+                  </span>
+                ))}
+              </div>
               <div className="flex flex-col gap-4 mb-8">
                 {[
                   { step: "01", text: "Зарегистрируйтесь за 2 минуты" },
@@ -407,9 +413,12 @@ export default function Index() {
                   </div>
                 ))}
               </div>
-              <button className="btn-primary px-8 py-3.5 rounded-xl text-base">
-                Подключиться бесплатно
-              </button>
+              <a href="https://autozix.ru/ref/U2FsdGVkX18wNmYxNzI3MQIMAQ%3D%3D" target="_blank" rel="noopener noreferrer">
+                <button className="btn-primary px-8 py-3.5 rounded-xl text-base flex items-center gap-2">
+                  <Icon name="UserPlus" size={16} />
+                  Стать партнёром
+                </button>
+              </a>
             </div>
 
             <div className="flex flex-col gap-4">
