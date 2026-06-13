@@ -189,7 +189,25 @@ export default function BottomSections() {
                 className="text-white/40 text-sm hover:text-white transition-colors">{link.label}</a>
             ))}
           </div>
-          <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <div className="flex items-center gap-2">
+              <a
+                href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-lg"
+              >
+                <img
+                  src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
+                  alt="eXpress"
+                  className="w-5 h-5 rounded-full object-cover"
+                />
+                <span className="text-white text-xs font-medium">Написать в eXpress</span>
+              </a>
+            </div>
+            <p className="text-white/40 text-[10px]">Работает без VPN · <a href="https://express.ms/public/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/70 transition-colors">Скачать приложение</a></p>
+            <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
+          </div>
         </div>
       </footer>
 
