@@ -193,7 +193,7 @@ export default function BottomSections() {
         </div>
       </footer>
 
-      {/* CHAT */}
+      {/* CHAT + EXPRESS */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         {chatOpen && (
           <div className="w-80 bg-white rounded-2xl shadow-2xl border border-surface-4 overflow-hidden animate-fade-in">
@@ -235,15 +235,62 @@ export default function BottomSections() {
             </div>
           </div>
         )}
-        <button
-          onClick={() => setChatOpen(!chatOpen)}
-          className="btn-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg relative"
-        >
-          <Icon name={chatOpen ? "X" : "MessageCircle"} size={22} />
-          {!chatOpen && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">1</span>
-          )}
-        </button>
+
+        <div className="flex items-end gap-3">
+          {/* Express кнопка */}
+          <div className="relative group flex flex-col items-center">
+            <div className="absolute bottom-16 right-0 bg-white rounded-2xl shadow-2xl border border-surface-4 p-4 w-52 hidden group-hover:flex flex-col items-center gap-3">
+              <p className="text-ink font-semibold text-sm text-center">Написать в eXpress</p>
+              <img
+                src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
+                alt="QR-код eXpress"
+                className="w-36 h-36 rounded-xl"
+              />
+              <p className="text-ink-light text-xs text-center">Отсканируй QR или нажми кнопку</p>
+              <p className="text-xs text-green-600 font-medium text-center">✓ Работает без VPN</p>
+              <a
+                href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-black text-white text-xs font-semibold py-2.5 rounded-xl text-center hover:bg-gray-800 transition-colors"
+              >
+                Открыть в eXpress
+              </a>
+              <a
+                href="https://express.ms/public/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-ink-light underline hover:text-ink transition-colors"
+              >
+                Скачать eXpress
+              </a>
+            </div>
+            <a
+              href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-14 h-14 rounded-full bg-black flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors"
+              title="Написать в eXpress — работает без VPN"
+            >
+              <img
+                src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
+                alt="eXpress"
+                className="w-8 h-8 rounded-full object-cover"
+              />
+            </a>
+          </div>
+
+          {/* Кнопка чата */}
+          <button
+            onClick={() => setChatOpen(!chatOpen)}
+            className="btn-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg relative"
+          >
+            <Icon name={chatOpen ? "X" : "MessageCircle"} size={22} />
+            {!chatOpen && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">1</span>
+            )}
+          </button>
+        </div>
       </div>
     </>
   );
