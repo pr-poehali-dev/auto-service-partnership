@@ -15,6 +15,11 @@ export default function Navbar({ activeSection }: { activeSection: string }) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-surface-4 shadow-sm">
       <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2.5">
+          <img
+            src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/files/01f2bbd9-3fd7-48f9-9583-19decc60f384.jpg"
+            alt="МагСибЗап Авто логотип"
+            className="w-9 h-9 rounded-lg object-cover"
+          />
           <div className="w-8 h-8 bg-orange rounded-lg flex items-center justify-center">
             <Icon name="Car" size={16} className="text-white" />
           </div>
