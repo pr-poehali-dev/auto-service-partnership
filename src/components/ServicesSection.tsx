@@ -90,6 +90,19 @@ const SERVICES = [
     badgeColor: "",
     link: "https://autozix.ru/ordauto/catalog",
   },
+  {
+    id: "reequip",
+    icon: "Wrench",
+    label: "Переоборудование автомобиля",
+    tag: "Переоборудование",
+    price: "Индивидуально",
+    desc: "Переоборудование автомобиля под ключ. Все виды изменений для любого автомобиля, в кратчайший срок. Быстро, выгодно и с профессиональной консультацией.",
+    badge: "Под ключ",
+    badgeColor: "bg-violet-600 text-white",
+    widgetId: "111",
+    widgetTarget: "reequip",
+    link: "https://autozix.ru/link/TElOS19fNzM1YTcyYzVXAFQ=",
+  },
 ];
 
 const REVIEWS = [
@@ -98,7 +111,7 @@ const REVIEWS = [
   { name: "Андрей П.", city: "Казань", text: "Проверил подержанный авто перед покупкой. Нашли скрытые ДТП. Спасибо!", stars: 5 },
 ];
 
-const FILTER_TAGS = ["Все", "Страхование", "История ТС", "Маркетплейс", "Импорт"];
+const FILTER_TAGS = ["Все", "Страхование", "История ТС", "Маркетплейс", "Импорт", "Переоборудование"];
 
 export default function ServicesSection() {
   const [activeFilter, setActiveFilter] = useState("Все");
