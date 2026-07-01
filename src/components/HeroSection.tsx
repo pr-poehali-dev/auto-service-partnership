@@ -75,8 +75,32 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right — ОСАГО виджет */}
-          <div id="calc" className="animate-fade-in-up delay-300">
+          {/* Right — виджеты */}
+          <div id="calc" className="animate-fade-in-up delay-300 flex flex-col gap-3">
+
+            {/* Авто из Кореи */}
+            <a href="#auto-import">
+              <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
+                <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
+                  <span className="text-lg">🇰🇷</span>
+                </div>
+                <span className="font-display text-lg font-semibold text-orange">Авто из Кореи</span>
+                <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
+              </div>
+            </a>
+
+            {/* Авто из Китая */}
+            <a href="#auto-import">
+              <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
+                <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
+                  <span className="text-lg">🇨🇳</span>
+                </div>
+                <span className="font-display text-lg font-semibold text-orange">Авто из Китая</span>
+                <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
+              </div>
+            </a>
+
+            {/* ОСАГО виджет */}
             <div className="bg-white rounded-2xl border-2 border-orange/15 shadow-xl p-4 overflow-hidden">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center">
@@ -86,6 +110,7 @@ export default function HeroSection() {
               </div>
               <AutozixWidget widgetId="108" widgetTarget="osago" refUrl="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" />
             </div>
+
           </div>
 
         </div>
