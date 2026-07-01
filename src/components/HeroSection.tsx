@@ -41,22 +41,15 @@ export default function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-3 mb-10 animate-fade-in-up delay-400">
-              <a href="#auto-import">
-                <button className="btn-secondary px-7 py-3.5 rounded-xl text-base flex items-center gap-2">
-                  <Icon name="Globe" size={16} />
-                  Авто из Кореи
-                </button>
-              </a>
-              <a href="#auto-import">
-                <button className="btn-secondary px-7 py-3.5 rounded-xl text-base flex items-center gap-2">
-                  <Icon name="Globe" size={16} />
-                  Авто из Китая
-                </button>
-              </a>
               <a href="#calc">
                 <button className="btn-primary px-7 py-3.5 rounded-xl text-base flex items-center gap-2 pulse-orange">
                   <Icon name="Calculator" size={16} />
                   Рассчитать ОСАГО
+                </button>
+              </a>
+              <a href="#services">
+                <button className="btn-secondary px-7 py-3.5 rounded-xl text-base">
+                  Все услуги
                 </button>
               </a>
             </div>
