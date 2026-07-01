@@ -47,9 +47,10 @@ export default function HeroSection() {
                   Рассчитать ОСАГО
                 </button>
               </a>
-              <a href="#services">
-                <button className="btn-secondary px-7 py-3.5 rounded-xl text-base">
-                  Все услуги
+              <a href="#auto-import">
+                <button className="btn-secondary px-7 py-3.5 rounded-xl text-base flex items-center gap-2">
+                  <Icon name="Globe" size={16} />
+                  Авто из Кореи / Китая
                 </button>
               </a>
             </div>

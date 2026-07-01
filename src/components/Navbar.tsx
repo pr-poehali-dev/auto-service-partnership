@@ -3,6 +3,7 @@ import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
   { label: "Главная", href: "#home" },
+  { label: "Авто из Азии", href: "#auto-import" },
   { label: "Услуги", href: "#services" },
   { label: "Партнёрам", href: "#referral" },
   { label: "О нас", href: "#about" },
