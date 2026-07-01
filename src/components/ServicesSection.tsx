@@ -160,7 +160,6 @@ export default function ServicesSection() {
                     <Icon name={s.icon} fallback="Shield" size={22} className="text-orange" />
                   </div>
                   <div>
-                    <div style={{fontFamily: "Arial, sans-serif", fontSize: "13px", color: "#888", fontWeight: 400, paddingRight: "90px"}}>{s.tag}</div>
                     <h3 className="font-display text-lg font-bold text-ink">{s.label}</h3>
                   </div>
                 </div>
