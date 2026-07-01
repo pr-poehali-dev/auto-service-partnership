@@ -75,7 +75,7 @@ export default function HeroSection() {
             <a href="#auto-import">
               <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
-                  <span className="text-lg">🇰🇷</span>
+                  <Icon name="Globe" size={16} className="text-orange" />
                 </div>
                 <span className="font-display text-lg font-semibold text-orange">Авто из Кореи</span>
                 <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
@@ -86,7 +86,7 @@ export default function HeroSection() {
             <a href="#auto-import">
               <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
-                  <span className="text-lg">🇨🇳</span>
+                  <Icon name="Globe" size={16} className="text-orange" />
                 </div>
                 <span className="font-display text-lg font-semibold text-orange">Авто из Китая</span>
                 <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
