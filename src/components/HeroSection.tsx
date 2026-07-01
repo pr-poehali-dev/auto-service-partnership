@@ -72,7 +72,7 @@ export default function HeroSection() {
           <div id="calc" className="animate-fade-in-up delay-300 flex flex-col gap-3">
 
             {/* Авто из Кореи */}
-            <a href="#auto-import">
+            <a href="https://autozix.ru/ordauto/catalog" target="_blank" rel="noopener noreferrer">
               <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
                   <Icon name="Globe" size={16} className="text-orange" />
@@ -83,7 +83,7 @@ export default function HeroSection() {
             </a>
 
             {/* Авто из Китая */}
-            <a href="#auto-import">
+            <a href="https://autozix.ru/ordauto/catalog" target="_blank" rel="noopener noreferrer">
               <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
                 <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
                   <Icon name="Globe" size={16} className="text-orange" />
