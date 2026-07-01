@@ -45,9 +45,6 @@ export default function Navbar({ activeSection }: { activeSection: string }) {
           <a href="https://autozix.ru/ref/U2FsdGVkX18wNmYxNzI3MQIMAQ%3D%3D" target="_blank" rel="noopener noreferrer">
             <button className="btn-secondary text-sm px-5 py-2 rounded-lg">Войти</button>
           </a>
-          <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer">
-            <button className="btn-primary text-sm px-5 py-2.5 rounded-lg">Оформить ОСАГО</button>
-          </a>
         </div>
 
         <button className="md:hidden text-ink-mid" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
