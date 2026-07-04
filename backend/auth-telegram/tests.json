@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Start login session",
+      "method": "POST",
+      "path": "/?action=start",
+      "body": {},
+      "expectedStatus": 200,
+      "expectedBody": {"token": "string", "deep_link": "string"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Unauthorized me request",
+      "method": "GET",
+      "path": "/?action=me",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
