@@ -42,6 +42,22 @@ def handler(event: dict, context) -> dict:
         }
 
     headers = {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
+    params = event.get('queryStringParameters') or {}
+
+    if event.get('httpMethod') == 'GET' and params.get('action') == 'set-webhook':
+        webhook_url = params.get('url', '')
+        if not webhook_url or not BOT_TOKEN:
+            return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'missing url or token'})}
+        api_url = f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook"
+        data = json.dumps({'url': webhook_url}).encode('utf-8')
+        req = urllib.request.Request(api_url, data=data, headers={'Content-Type': 'application/json'})
+        try:
+            resp = urllib.request.urlopen(req, timeout=10)
+            result = json.loads(resp.read().decode('utf-8'))
+        except Exception as e:
+            result = {'ok': False, 'error': str(e)}
+        return {'statusCode': 200, 'headers': headers, 'body': json.dumps(result)}
+
     body_raw = event.get('body') or '{}'
     try:
         update = json.loads(body_raw)

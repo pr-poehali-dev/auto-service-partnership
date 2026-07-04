@@ -42,8 +42,11 @@ export default function Navbar({ activeSection }: { activeSection: string }) {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://autozix.ru/ref/U2FsdGVkX18wNmYxNzI3MQIMAQ%3D%3D" target="_blank" rel="noopener noreferrer">
-            <button className="btn-secondary text-sm px-5 py-2 rounded-lg">Войти</button>
+          <a href="/login">
+            <button className="btn-secondary text-sm px-5 py-2 rounded-lg flex items-center gap-1.5">
+              <Icon name="User" size={15} />
+              Войти
+            </button>
           </a>
         </div>
 
@@ -60,6 +63,12 @@ export default function Navbar({ activeSection }: { activeSection: string }) {
           ))}
           <a href="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" target="_blank" rel="noopener noreferrer" className="w-full">
             <button className="btn-primary text-sm px-5 py-3 rounded-lg w-full mt-1">Оформить ОСАГО</button>
+          </a>
+          <a href="/login" className="w-full">
+            <button className="btn-secondary text-sm px-5 py-3 rounded-lg w-full flex items-center justify-center gap-1.5">
+              <Icon name="User" size={15} />
+              Войти
+            </button>
           </a>
         </div>
       )}
