@@ -131,8 +131,8 @@ def handler(event: dict, context) -> dict:
 
         if text.startswith('/admin'):
             parts = text.split(maxsplit=1)
-            code = parts[1] if len(parts) > 1 else ''
-            if ADMIN_SECRET_CODE and code == ADMIN_SECRET_CODE:
+            code = parts[1].strip() if len(parts) > 1 else ''
+            if ADMIN_SECRET_CODE and code == ADMIN_SECRET_CODE.strip():
                 cur.execute(
                     f"INSERT INTO {SCHEMA}.settings (key, value) VALUES ('admin_chat_id', %s) "
                     f"ON CONFLICT (key) DO UPDATE SET value = %s",
