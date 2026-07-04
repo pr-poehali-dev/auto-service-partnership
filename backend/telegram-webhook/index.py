@@ -7,7 +7,7 @@ import urllib.request
 
 SCHEMA = os.environ.get('MAIN_DB_SCHEMA', 'public')
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-ADMIN_SECRET_CODE = os.environ.get('ADMIN_SECRET_CODE', '')
+ADMIN_SECRET_CODE = os.environ.get('ADMIN_SECRET_CODE', '').strip()
 
 
 def get_conn():
