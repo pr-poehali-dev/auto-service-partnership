@@ -66,9 +66,18 @@ export default function Kwt24() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setSent(true);
-    setLoading(false);
+    try {
+      await fetch("https://functions.poehali.dev/a9b308c7-8b62-4037-b73b-62315f678f0a", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } catch {
+      alert("Не удалось отправить заявку. Попробуйте позвонить нам напрямую.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

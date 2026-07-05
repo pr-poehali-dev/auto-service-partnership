@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Missing fields returns 400",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "", "phone": ""},
+      "expectedStatus": 400
+    },
+    {
+      "name": "Valid lead submission",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Иван Тестов", "phone": "+79135551122", "comment": "Дом, 15 кВт"},
+      "expectedStatus": 200,
+      "bodyMatcher": "partial",
+      "expectedBody": {"id": "number"}
+    }
+  ]
+}
