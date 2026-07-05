@@ -172,73 +172,14 @@ export default function BottomSections() {
             ))}
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
-            <div className="flex items-center gap-2">
-              <a
-                href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors px-3 py-1.5 rounded-lg"
-              >
-                <img
-                  src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
-                  alt="eXpress"
-                  className="w-5 h-5 rounded-full object-cover"
-                />
-                <span className="text-white text-xs font-medium">Написать в eXpress</span>
-              </a>
-            </div>
-            <p className="text-white/40 text-[10px]">Работает без VPN · <a href="https://express.ms/public/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/70 transition-colors">Скачать приложение</a></p>
             <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
           </div>
         </div>
       </footer>
 
-      {/* CHAT + EXPRESS */}
+      {/* CHAT */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         <div className="flex items-end gap-3">
-          {/* Express кнопка */}
-          <div className="relative group flex flex-col items-center">
-            <div className="absolute bottom-16 right-0 bg-white rounded-2xl shadow-2xl border border-surface-4 p-4 w-52 hidden group-hover:flex flex-col items-center gap-3">
-              <p className="text-ink font-semibold text-sm text-center">Написать в eXpress</p>
-              <img
-                src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
-                alt="QR-код eXpress"
-                className="w-36 h-36 rounded-xl"
-              />
-              <p className="text-ink-light text-xs text-center">Отсканируй QR или нажми кнопку</p>
-              <p className="text-xs text-green-600 font-medium text-center">✓ Работает без VPN</p>
-              <a
-                href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-black text-white text-xs font-semibold py-2.5 rounded-xl text-center hover:bg-gray-800 transition-colors"
-              >
-                Открыть в eXpress
-              </a>
-              <a
-                href="https://express.ms/public/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-ink-light underline hover:text-ink transition-colors"
-              >
-                Скачать eXpress
-              </a>
-            </div>
-            <a
-              href="https://xlnk.ms/open/profile/ef632335-a3ab-5f00-a8fb-a002fda4d25e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-14 h-14 rounded-full bg-black flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors"
-              title="Написать в eXpress — работает без VPN"
-            >
-              <img
-                src="https://cdn.poehali.dev/projects/77b19e44-bfe9-4fb0-8874-b004bc1f4262/bucket/7e2283d2-d21d-404c-aca3-19455908e251.png"
-                alt="eXpress"
-                className="w-8 h-8 rounded-full object-cover"
-              />
-            </a>
-          </div>
-
           {/* Кнопка чата — Telegram-бот */}
           <a
             href="https://t.me/magsibzap_auto_bot"
