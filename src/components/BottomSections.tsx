@@ -9,24 +9,6 @@ const NAV_LINKS = [
 ];
 
 export default function BottomSections() {
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatInput, setChatInput] = useState("");
-  const [messages, setMessages] = useState([
-    { from: "manager", text: "Привет! Помогу оформить ОСАГО, КАСКО или ответить на любой вопрос 🚗" },
-  ]);
-
-  const sendMessage = () => {
-    if (!chatInput.trim()) return;
-    setMessages((prev) => [...prev, { from: "user", text: chatInput }]);
-    setChatInput("");
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { from: "manager", text: "Принял! Менеджер ответит в течение нескольких минут. Или позвоните: +7 923-771-6465" },
-      ]);
-    }, 700);
-  };
-
   return (
     <>
       {/* REFERRAL */}
@@ -213,47 +195,6 @@ export default function BottomSections() {
 
       {/* CHAT + EXPRESS */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        {chatOpen && (
-          <div className="w-80 bg-white rounded-2xl shadow-2xl border border-surface-4 overflow-hidden animate-fade-in">
-            <div className="bg-orange px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-white rounded-full" />
-                <span className="text-white font-semibold text-sm">Онлайн-консультация</span>
-              </div>
-              <button onClick={() => setChatOpen(false)} className="text-white/70 hover:text-white">
-                <Icon name="X" size={14} />
-              </button>
-            </div>
-            <div className="h-56 overflow-y-auto p-4 flex flex-col gap-3 bg-surface-2">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[80%] text-sm px-3.5 py-2.5 rounded-2xl leading-relaxed ${
-                    msg.from === "user"
-                      ? "bg-orange text-white rounded-br-sm"
-                      : "bg-white text-ink-mid border border-surface-4 rounded-bl-sm"
-                  }`}>
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-2 px-3 py-3 border-t border-surface-4 bg-white">
-              <input
-                type="text"
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                placeholder="Ваш вопрос..."
-                className="flex-1 bg-surface-3 rounded-xl px-3 py-2 text-sm text-ink placeholder-ink-light outline-none focus:bg-surface-2 transition-colors border border-transparent focus:border-orange/30"
-              />
-              <button onClick={sendMessage}
-                className="btn-primary w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
-                <Icon name="Send" size={14} />
-              </button>
-            </div>
-          </div>
-        )}
-
         <div className="flex items-end gap-3">
           {/* Express кнопка */}
           <div className="relative group flex flex-col items-center">
@@ -298,16 +239,17 @@ export default function BottomSections() {
             </a>
           </div>
 
-          {/* Кнопка чата */}
-          <button
-            onClick={() => setChatOpen(!chatOpen)}
+          {/* Кнопка чата — Telegram-бот */}
+          <a
+            href="https://t.me/magsibzap_auto_bot"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg relative"
+            title="Написать в Telegram"
           >
-            <Icon name={chatOpen ? "X" : "MessageCircle"} size={22} />
-            {!chatOpen && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">1</span>
-            )}
-          </button>
+            <Icon name="Send" size={22} />
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center text-[10px] text-white font-bold">1</span>
+          </a>
         </div>
       </div>
     </>
