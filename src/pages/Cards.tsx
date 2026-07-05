@@ -1,3 +1,5 @@
+import Seo from "@/components/Seo";
+
 export default function Cards() {
   const cards = [
     {
@@ -32,6 +34,11 @@ export default function Cards() {
 
   return (
     <div style={{ background: "#e5e7eb", minHeight: "100vh", padding: "40px 20px", display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
+      <Seo
+        title="Карточки МагСибЗап Авто"
+        description="Служебная страница карточек для Яндекс.Бизнес"
+        noindex
+      />
       <p style={{ color: "#6b7280", fontSize: 16, fontWeight: 600, fontFamily: "Inter, sans-serif" }}>
         Карточки для Яндекс.Бизнес — скриншоть каждую отдельно
       </p>

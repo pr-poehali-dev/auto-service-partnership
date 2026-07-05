@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Seo from "@/components/Seo";
 import Icon from "@/components/ui/icon";
 import { AUTH_API, CABINET_API, getSessionToken, clearSessionToken } from "@/lib/api";
 
@@ -141,6 +142,11 @@ export default function Cabinet() {
 
   return (
     <div className="min-h-screen bg-surface-2 font-body">
+      <Seo
+        title="Личный кабинет — МагСибЗап Авто"
+        description="Личный кабинет клиента МагСибЗап Авто: заказы, профиль и чат с менеджером"
+        noindex
+      />
       <nav className="bg-white border-b border-surface-4 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-5 py-3.5 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5">

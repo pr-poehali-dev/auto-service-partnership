@@ -7,6 +7,23 @@
       "expectedStatus": 401,
       "expectedBody": {"error": "string"},
       "bodyMatcher": "partial"
+    },
+    {
+      "name": "Unauthorized admin leads request",
+      "method": "GET",
+      "path": "/?action=admin-leads",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Wrong admin password login",
+      "method": "POST",
+      "path": "/?action=admin-login",
+      "body": {"password": "wrong_password_test"},
+      "expectedStatus": 401,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
     }
   ]
 }

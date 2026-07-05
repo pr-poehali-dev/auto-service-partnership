@@ -1,5 +1,8 @@
 import json
 import os
+import secrets
+import string
+from datetime import datetime, timedelta
 
 import psycopg2
 
@@ -20,9 +23,27 @@ def get_user_id(cur, session_token):
     return row[0] if row else None
 
 
+def gen_admin_token(length=48):
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for _ in range(length))
+
+
+def check_admin_auth(cur, admin_token):
+    if not admin_token:
+        return False
+    cur.execute(
+        f"""SELECT id FROM {SCHEMA}.admin_sessions
+            WHERE token = %s AND expires_at > now()""",
+        (admin_token,),
+    )
+    return cur.fetchone() is not None
+
+
 def handler(event: dict, context) -> dict:
     """Личный кабинет клиента: получение списка заказов, истории сообщений
-    чата с менеджером и отправка нового сообщения."""
+    чата с менеджером и отправка нового сообщения. Также обслуживает вход
+    в веб-админку владельца бизнеса и объединённый список заявок из
+    проектов МагСибЗап Авто и kWt24 с меткой источника."""
     method = event.get('httpMethod', 'GET')
 
     if method == 'OPTIONS':
@@ -31,7 +52,7 @@ def handler(event: dict, context) -> dict:
             'headers': {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, X-Session-Token',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Session-Token, X-Admin-Token',
                 'Access-Control-Max-Age': '86400',
             },
             'body': '',
@@ -45,6 +66,85 @@ def handler(event: dict, context) -> dict:
         body = json.loads(body_raw) if body_raw else {}
     except json.JSONDecodeError:
         body = {}
+
+    if action == 'admin-login' and method == 'POST':
+        conn = get_conn()
+        cur = conn.cursor()
+        try:
+            password = body.get('password', '')
+            correct = os.environ.get('ADMIN_PANEL_PASSWORD', '')
+            if not correct or password != correct:
+                return {'statusCode': 401, 'headers': headers, 'body': json.dumps({'error': 'invalid_password'})}
+            token = gen_admin_token()
+            expires_at = datetime.utcnow() + timedelta(days=7)
+            cur.execute(
+                f"INSERT INTO {SCHEMA}.admin_sessions (token, expires_at) VALUES (%s, %s)",
+                (token, expires_at),
+            )
+            conn.commit()
+            return {'statusCode': 200, 'headers': headers, 'body': json.dumps({'token': token})}
+        finally:
+            cur.close()
+            conn.close()
+
+    if action == 'admin-leads' and method == 'GET':
+        conn = get_conn()
+        cur = conn.cursor()
+        try:
+            admin_token = event.get('headers', {}).get('X-Admin-Token') or params.get('admin_token', '')
+            if not check_admin_auth(cur, admin_token):
+                return {'statusCode': 401, 'headers': headers, 'body': json.dumps({'error': 'unauthorized'})}
+
+            cur.execute(
+                f"""SELECT o.id, u.first_name, u.phone, u.telegram_username,
+                           o.title, o.stage, o.status, o.description, o.created_at
+                    FROM {SCHEMA}.orders o
+                    JOIN {SCHEMA}.users u ON u.id = o.user_id
+                    ORDER BY o.created_at DESC"""
+            )
+            auto_rows = cur.fetchall()
+            auto_leads = [
+                {
+                    'source': 'magsibzap',
+                    'source_label': 'МагСибЗап Авто',
+                    'id': r[0],
+                    'name': r[1] or r[3] or 'Клиент',
+                    'phone': r[2],
+                    'title': r[4],
+                    'stage': r[5],
+                    'status': r[6],
+                    'comment': r[7],
+                    'created_at': r[8].isoformat(),
+                }
+                for r in auto_rows
+            ]
+
+            cur.execute(
+                f"""SELECT id, name, phone, comment, created_at
+                    FROM {SCHEMA}.kwt24_leads ORDER BY created_at DESC"""
+            )
+            kwt24_rows = cur.fetchall()
+            kwt24_leads = [
+                {
+                    'source': 'kwt24',
+                    'source_label': 'kWt24',
+                    'id': r[0],
+                    'name': r[1],
+                    'phone': r[2],
+                    'title': 'Технологическое присоединение',
+                    'stage': None,
+                    'status': None,
+                    'comment': r[3],
+                    'created_at': r[4].isoformat(),
+                }
+                for r in kwt24_rows
+            ]
+
+            all_leads = sorted(auto_leads + kwt24_leads, key=lambda x: x['created_at'], reverse=True)
+            return {'statusCode': 200, 'headers': headers, 'body': json.dumps({'leads': all_leads})}
+        finally:
+            cur.close()
+            conn.close()
 
     session_token = event.get('headers', {}).get('X-Session-Token') or params.get('session_token') or body.get('session_token', '')
 
