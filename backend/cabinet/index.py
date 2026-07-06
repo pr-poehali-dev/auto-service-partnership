@@ -42,8 +42,9 @@ def check_admin_auth(cur, admin_token):
 def handler(event: dict, context) -> dict:
     """Личный кабинет клиента: получение списка заказов, истории сообщений
     чата с менеджером и отправка нового сообщения. Также обслуживает вход
-    в веб-админку владельца бизнеса и объединённый список заявок из
-    проектов МагСибЗап Авто и kWt24 с меткой источника."""
+    в веб-админку владельца бизнеса, приём заявок с главной страницы сайта
+    (submit-lead) и объединённый список заявок из проектов МагСибЗап Авто,
+    kWt24 и главной страницы с меткой источника."""
     method = event.get('httpMethod', 'GET')
 
     if method == 'OPTIONS':
@@ -140,8 +141,92 @@ def handler(event: dict, context) -> dict:
                 for r in kwt24_rows
             ]
 
-            all_leads = sorted(auto_leads + kwt24_leads, key=lambda x: x['created_at'], reverse=True)
+            cur.execute(
+                f"""SELECT id, name, phone, service, comment, created_at
+                    FROM {SCHEMA}.magsibzap_leads ORDER BY created_at DESC"""
+            )
+            site_rows = cur.fetchall()
+            site_leads = [
+                {
+                    'source': 'website',
+                    'source_label': 'Заявка с сайта',
+                    'id': r[0],
+                    'name': r[1],
+                    'phone': r[2],
+                    'title': r[3] or 'Заявка с главной страницы',
+                    'stage': None,
+                    'status': None,
+                    'comment': r[4],
+                    'created_at': r[5].isoformat(),
+                }
+                for r in site_rows
+            ]
+
+            all_leads = sorted(auto_leads + kwt24_leads + site_leads, key=lambda x: x['created_at'], reverse=True)
             return {'statusCode': 200, 'headers': headers, 'body': json.dumps({'leads': all_leads})}
+        finally:
+            cur.close()
+            conn.close()
+
+    if action == 'submit-lead' and method == 'POST':
+        website = (body.get('website') or '').strip()
+        if website:
+            return {'statusCode': 200, 'headers': headers, 'body': json.dumps({'id': 0, 'created_at': datetime.utcnow().isoformat()})}
+
+        name = (body.get('name') or '').strip()
+        phone = (body.get('phone') or '').strip()
+        service = (body.get('service') or '').strip()
+        comment = (body.get('comment') or '').strip()
+
+        if not name or not phone:
+            return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'name_and_phone_required'})}
+        if len(name) > 255 or len(phone) > 50 or len(service) > 100:
+            return {'statusCode': 400, 'headers': headers, 'body': json.dumps({'error': 'field_too_long'})}
+
+        conn = get_conn()
+        cur = conn.cursor()
+        try:
+            cur.execute(
+                f"""SELECT id FROM {SCHEMA}.magsibzap_leads
+                    WHERE phone = %s AND created_at > now() - interval '60 seconds'""",
+                (phone,),
+            )
+            if cur.fetchone():
+                return {'statusCode': 429, 'headers': headers, 'body': json.dumps({'error': 'too_many_requests'})}
+
+            cur.execute(
+                f"""INSERT INTO {SCHEMA}.magsibzap_leads (name, phone, service, comment)
+                    VALUES (%s, %s, %s, %s) RETURNING id, created_at""",
+                (name, phone, service, comment),
+            )
+            row = cur.fetchone()
+            conn.commit()
+
+            cur.execute(f"SELECT value FROM {SCHEMA}.settings WHERE key = 'admin_chat_id'")
+            admin_row = cur.fetchone()
+            if admin_row:
+                import urllib.request
+                bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+                if bot_token:
+                    text = "Новая заявка МагСибЗап Авто:\n"
+                    if service:
+                        text += f"Услуга: {service}\n"
+                    text += f"Имя: {name}\nТелефон: {phone}"
+                    if comment:
+                        text += f"\nКомментарий: {comment}"
+                    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+                    data = json.dumps({'chat_id': admin_row[0], 'text': text}).encode('utf-8')
+                    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+                    try:
+                        urllib.request.urlopen(req, timeout=5)
+                    except Exception:
+                        pass
+
+            return {
+                'statusCode': 200,
+                'headers': headers,
+                'body': json.dumps({'id': row[0], 'created_at': row[1].isoformat()}),
+            }
         finally:
             cur.close()
             conn.close()

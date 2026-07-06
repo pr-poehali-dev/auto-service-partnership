@@ -24,6 +24,22 @@
       "expectedStatus": 401,
       "expectedBody": {"error": "string"},
       "bodyMatcher": "partial"
+    },
+    {
+      "name": "Submit lead missing fields",
+      "method": "POST",
+      "path": "/?action=submit-lead",
+      "body": {"name": "", "phone": ""},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Submit lead valid",
+      "method": "POST",
+      "path": "/?action=submit-lead",
+      "body": {"name": "Пётр Тестов", "phone": "+79135559912", "service": "ОСАГО", "comment": "Тест"},
+      "expectedStatus": 200
     }
   ]
 }

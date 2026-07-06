@@ -4,7 +4,7 @@ import Icon from "@/components/ui/icon";
 import { CABINET_API, getAdminToken, setAdminToken, clearAdminToken } from "@/lib/api";
 
 interface Lead {
-  source: "magsibzap" | "kwt24";
+  source: "magsibzap" | "kwt24" | "website";
   source_label: string;
   id: number;
   name: string;
@@ -19,6 +19,7 @@ interface Lead {
 const sourceStyle: Record<string, string> = {
   magsibzap: "bg-orange-pale text-orange",
   kwt24: "bg-blue-100 text-blue-700",
+  website: "bg-green-100 text-green-700",
 };
 
 export default function Admin() {
@@ -28,7 +29,7 @@ export default function Admin() {
   const [loggingIn, setLoggingIn] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState<"all" | "magsibzap" | "kwt24">("all");
+  const [filter, setFilter] = useState<"all" | "magsibzap" | "kwt24" | "website">("all");
 
   const loadLeads = async (t: string) => {
     setLoading(true);
@@ -135,6 +136,7 @@ export default function Admin() {
         <div className="flex gap-2 mb-6">
           {[
             { key: "all" as const, label: "Все" },
+            { key: "website" as const, label: "Заявки с сайта" },
             { key: "magsibzap" as const, label: "МагСибЗап Авто" },
             { key: "kwt24" as const, label: "kWt24" },
           ].map((f) => (

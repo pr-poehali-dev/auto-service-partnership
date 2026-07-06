@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
+import LeadForm from "@/components/LeadForm";
 
 function AutozixWidget({ widgetId, widgetTarget, refUrl }: { widgetId: string; widgetTarget: string; refUrl?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,6 +104,9 @@ export default function HeroSection() {
               </div>
               <AutozixWidget widgetId="108" widgetTarget="osago" refUrl="https://autozix.ru/link/TElOS19fZTExY2NhMTBXBFE=" />
             </div>
+
+            {/* Своя форма заявки */}
+            <LeadForm />
 
           </div>
 
