@@ -31,6 +31,21 @@ const DIRECTIONS = [
     borderColor: "border-red-200",
     iconBg: "bg-red-500",
   },
+  {
+    id: "japan",
+    flag: "🇯🇵",
+    country: "Япония",
+    title: "Авто из Японии под ключ",
+    subtitle: "Toyota, Honda, Nissan, Mazda и другие",
+    desc: "Покупаем напрямую на аукционах Японии. Полная стоимость: авто + доставка + таможня + СБКТС и ЭПТС до г. Владивосток. Доставка до Москвы +200 000 ₽.",
+    perks: ["Аукционы Японии", "Документы под ключ", "Гарантия сделки", "Поддержка 24/7"],
+    badge: "Аукционы Японии",
+    badgeColor: "bg-blue-600 text-white",
+    link: "https://autozix.ru/ordauto/catalog",
+    accent: "from-blue-50 to-blue-100/50",
+    borderColor: "border-blue-200",
+    iconBg: "bg-blue-600",
+  },
 ];
 
 const STEPS = [
@@ -55,12 +70,12 @@ export default function AutoImportSection() {
             Авто из Азии — <span className="text-orange">под ключ</span>
           </h2>
           <p className="text-ink-light text-base md:text-lg max-w-2xl mx-auto">
-            Привозим новые и подержанные автомобили из Кореи и Китая. Берём на себя всё: выбор, доставку, таможню и оформление документов.
+            Привозим новые и подержанные автомобили из Кореи, Китая и Японии, включая покупку на аукционах Японии. Берём на себя всё: выбор, доставку, таможню и оформление документов.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-14">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-14">
           {DIRECTIONS.map((d) => (
             <div
               key={d.id}

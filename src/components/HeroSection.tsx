@@ -38,7 +38,7 @@ export default function HeroSection() {
             </h1>
             <p className="text-ink-light text-lg leading-relaxed mb-8 max-w-lg animate-fade-in-up delay-300">
               ОСАГО за 5 минут, КАСКО дешевле рынка, проверка авто перед покупкой,
-              машины из Китая и Кореи под ключ.
+              машины из Китая, Кореи и Японии под ключ.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-10 animate-fade-in-up delay-400">
@@ -90,6 +90,17 @@ export default function HeroSection() {
                   <Icon name="Globe" size={16} className="text-orange" />
                 </div>
                 <span className="font-display text-lg font-semibold text-orange">Авто из Китая</span>
+                <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
+              </div>
+            </a>
+
+            {/* Авто из Японии */}
+            <a href="https://autozix.ru/ordauto/catalog" target="_blank" rel="noopener noreferrer">
+              <div className="bg-white rounded-2xl border-2 border-orange shadow-sm p-4 flex items-center gap-3 hover:shadow-md transition-shadow cursor-pointer">
+                <div className="w-8 h-8 bg-orange-pale rounded-lg flex items-center justify-center shrink-0">
+                  <Icon name="Globe" size={16} className="text-orange" />
+                </div>
+                <span className="font-display text-lg font-semibold text-orange">Авто из Японии</span>
                 <Icon name="ArrowRight" size={16} className="text-orange ml-auto" />
               </div>
             </a>

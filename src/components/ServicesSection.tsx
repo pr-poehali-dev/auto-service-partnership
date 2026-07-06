@@ -91,6 +91,17 @@ const SERVICES = [
     link: "https://autozix.ru/ordauto/catalog",
   },
   {
+    id: "japan",
+    icon: "Ship",
+    label: "Авто из Японии 🇯🇵",
+    tag: "Импорт",
+    price: "Каталог →",
+    desc: "Toyota, Honda, Nissan, Mazda и другие. Покупка на аукционах Японии под ключ: авто + доставка + таможня + все документы.",
+    badge: "Аукционы Японии",
+    badgeColor: "bg-blue-600 text-white",
+    link: "https://autozix.ru/ordauto/catalog",
+  },
+  {
     id: "reequip",
     icon: "Wrench",
     label: "Переоборудование автомобиля",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { CABINET_API } from "@/lib/api";
 
-const SERVICES = ["ОСАГО", "КАСКО", "Авто из Кореи", "Авто из Китая", "История авто", "Другое"];
+const SERVICES = ["ОСАГО", "КАСКО", "Авто из Кореи", "Авто из Китая", "Авто из Японии", "История авто", "Другое"];
 
 export default function LeadForm() {
   const [form, setForm] = useState({ name: "", phone: "", service: SERVICES[0], comment: "" });
