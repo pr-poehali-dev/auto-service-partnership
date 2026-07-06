@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AutoImportSection from "@/components/AutoImportSection";
 import ServicesSection from "@/components/ServicesSection";
+import PromoGallery from "@/components/PromoGallery";
 import BottomSections from "@/components/BottomSections";
 
 export default function Index() {
@@ -35,6 +36,7 @@ export default function Index() {
       <HeroSection />
       <AutoImportSection />
       <ServicesSection />
+      <PromoGallery />
       <BottomSections />
     </div>
   );
