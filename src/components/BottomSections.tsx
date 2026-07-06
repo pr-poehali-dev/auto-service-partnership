@@ -141,7 +141,7 @@ export default function BottomSections() {
       </section>
 
       {/* CITIES */}
-      <section className="py-16 bg-white">
+      <section id="cities" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-5">
           <span className="section-label mb-4 inline-flex">
             <Icon name="MapPin" size={13} />

@@ -11,7 +11,7 @@ export default function Index() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "auto-import", "services", "promo", "referral", "about"];
+      const sections = ["home", "auto-import", "services", "promo", "cities", "referral", "about"];
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
