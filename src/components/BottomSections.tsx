@@ -172,7 +172,7 @@ export default function BottomSections() {
             ))}
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
-            <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
+            <p className="text-white/25 text-xs">© {new Date().getFullYear()} МагСибЗап Авто</p>
           </div>
         </div>
       </footer>
