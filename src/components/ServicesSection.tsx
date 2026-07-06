@@ -116,12 +116,6 @@ const SERVICES = [
   },
 ];
 
-const REVIEWS = [
-  { name: "Максим К.", city: "Москва", text: "Оформил ОСАГО за 7 минут. Всё честно, без скрытых платежей. Рекомендую!", stars: 5 },
-  { name: "Светлана Р.", city: "СПб", text: "Заказала авто из Кореи — всё под ключ. Помогли с таможней, привезли быстро.", stars: 5 },
-  { name: "Андрей П.", city: "Казань", text: "Проверил подержанный авто перед покупкой. Нашли скрытые ДТП. Спасибо!", stars: 5 },
-];
-
 const FILTER_TAGS = ["Все", "Страхование", "История ТС", "Продажа", "Импорт", "Переоборудование"];
 
 export default function ServicesSection() {
@@ -211,40 +205,6 @@ export default function ServicesSection() {
                     )}
                   </div>
                 )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* REVIEWS */}
-      <section className="py-16 bg-surface-3">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="mb-4">
-            <span className="section-label">
-              <Icon name="Star" size={13} />
-              Отзывы
-            </span>
-          </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mt-3 mb-10">Что говорят клиенты</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {REVIEWS.map((r) => (
-              <div key={r.name} className="card-lift bg-white rounded-2xl p-6 border border-surface-4">
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: r.stars }).map((_, i) => (
-                    <Icon key={i} name="Star" size={15} className="text-orange fill-orange" />
-                  ))}
-                </div>
-                <p className="text-ink-mid text-sm leading-relaxed mb-4">«{r.text}»</p>
-                <div className="flex items-center gap-2 pt-3 border-t border-surface-4">
-                  <div className="w-8 h-8 bg-orange-pale rounded-full flex items-center justify-center text-orange font-bold text-sm">
-                    {r.name[0]}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-ink">{r.name}</div>
-                    <div className="text-xs text-ink-light">{r.city}</div>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
