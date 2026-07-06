@@ -357,6 +357,12 @@ export default function Kwt24() {
             </a>
           </div>
         </div>
+        <div className="max-w-6xl mx-auto px-5 flex justify-center md:justify-end mt-4">
+          <a href="/admin" className="text-gray-600 text-[11px] hover:text-gray-400 transition-colors flex items-center gap-1">
+            <Icon name="ShieldCheck" size={11} />
+            Админ-панель
+          </a>
+        </div>
       </footer>
 
     </div>
