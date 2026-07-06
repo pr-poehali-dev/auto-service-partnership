@@ -173,6 +173,10 @@ export default function BottomSections() {
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
             <p className="text-white/25 text-xs">© 2025 МагСибЗап Авто</p>
+            <a href="/admin" className="text-white/20 text-[11px] hover:text-white/50 transition-colors flex items-center gap-1">
+              <Icon name="ShieldCheck" size={11} />
+              Админ-панель
+            </a>
           </div>
         </div>
       </footer>
