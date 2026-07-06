@@ -8,6 +8,16 @@ const NAV_LINKS = [
   { label: "О нас", href: "#about" },
 ];
 
+const CITIES = [
+  "Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань",
+  "Красноярск", "Нижний Новгород", "Челябинск", "Уфа", "Самара",
+  "Ростов-на-Дону", "Краснодар", "Омск", "Воронеж", "Пермь",
+  "Волгоград", "Саратов", "Тюмень", "Тольятти", "Махачкала",
+  "Барнаул", "Ижевск", "Хабаровск", "Ульяновск", "Иркутск",
+  "Владивосток", "Ярославль", "Ставрополь", "Набережные Челны", "Томск",
+  "Кемерово", "Балашиха", "Оренбург", "Новокузнецк", "Рязань",
+];
+
 export default function BottomSections() {
   return (
     <>
@@ -126,6 +136,30 @@ export default function BottomSections() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CITIES */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-5">
+          <span className="section-label mb-4 inline-flex">
+            <Icon name="MapPin" size={13} />
+            География работы
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mt-3 mb-4">
+            Работаем по всей России
+          </h2>
+          <p className="text-ink-light text-base leading-relaxed mb-6 max-w-2xl">
+            Оформляем ОСАГО и КАСКО онлайн, а также организуем доставку автомобилей
+            из Кореи, Китая и Японии под ключ в городах:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {CITIES.map((city) => (
+              <span key={city} className="bg-surface-3 text-ink-mid text-sm px-3.5 py-1.5 rounded-full">
+                {city}
+              </span>
+            ))}
           </div>
         </div>
       </section>
