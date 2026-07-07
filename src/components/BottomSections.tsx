@@ -140,6 +140,35 @@ export default function BottomSections() {
         </div>
       </section>
 
+      {/* REVIEWS */}
+      <section id="reviews" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-surface-3 rounded-2xl p-6 md:p-10">
+            <div className="text-center md:text-left">
+              <span className="section-label mb-4 inline-flex">
+                <Icon name="Star" size={13} />
+                Нам доверяют
+              </span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-ink mt-3 mb-2">
+                Оценка на Яндекс Картах
+              </h2>
+              <p className="text-ink-light text-sm md:text-base max-w-md">
+                Реальные отзывы наших клиентов о качестве услуг и сервиса.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-3 shadow-sm">
+              <iframe
+                src="https://yandex.ru/sprav/widget/rating-badge/47290779146?type=rating"
+                width="150"
+                height="50"
+                frameBorder="0"
+                title="Рейтинг на Яндекс Картах"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CITIES */}
       <section id="cities" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-5">
